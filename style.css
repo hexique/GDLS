@@ -1,0 +1,110 @@
+body{
+  background-color: #1e1e1e;
+  margin-left: 50px;
+}
+
+.centered{
+  text-align: center;
+}
+
+select{
+  color: white;
+  background-color: #1e1e1e;
+}
+
+#settings{
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+#checkbox{
+  color: #ffff
+}
+
+input{
+  background-color: #1e1e1e;
+  color: #ffff;
+  border: solid;
+  border-width: 0.01em;
+  border-radius: 5px;
+  font-family: Arial;
+  font-size: 1em;
+  width: 200px;
+}
+
+label{
+  color: #ffff;
+  font-family: Arial;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.checkbox-label{
+  margin-left: -240px;
+}
+
+p{
+  color: #ffff;
+  font-family: Arial;
+  margin-bottom: 0px;
+}
+
+h1{
+  color: #ffff;
+  font-family: Arial;
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+h2{
+  color: #ffff;
+  font-family: Arial;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+h3{
+  color: #ffff;
+  font-family: Arial;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+a{
+  text-decoration: none;
+  color: #ffff;
+}
+
+button{
+    margin-top: 15px;
+    color: #ffffff;
+    background-color: #1b1b1b;
+    border-color: #ffffff;
+    font-size: 1em;
+    padding: 10px 10px;
+    border-width: 0.001em;
+    border-radius: 5px;
+    border: solid;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+}
+
+button:hover{
+    color: #1b1b1b;
+    background-color: #ffff;
+    border-color: #ffff;
+}
+
+.options-panel[hidden] {
+    display: none;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    height: 0;
+}
+
+.version {
+  text-align: right;
+  margin-top: 0;
+}
