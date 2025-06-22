@@ -1,5 +1,5 @@
 
-async function loadData() {
+async function load_data() {
   const response = await fetch('data/data 0.json');
 
   const text = await response.text();
