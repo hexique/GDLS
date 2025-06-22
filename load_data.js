@@ -1,12 +1,11 @@
-
 async function load_data() {
-  const response = await fetch('data/data 0.json');
-
-  const text = await response.text();
-  if(!text.trim().startsWith('{') && !text.trim().startsWith('[')) {
-    alert("Fucking error:" + text.substring(0, 100));
-    return;
+  try {
+    const response = await fetch('data/data 0.json');
+    if (!response.ok) throw new Error('Error');
+    const text = await response.text();
+    return JSON.parse(text);
+  } catch (error) {
+    console.error('Error loading data:', error);
+    return [];
   }
-  console.log("YAAAAAAAAAAYYYYYYYY I LOADED THIS SHIT!!!!!! THE LENGTHHTH OF DATA IS", JSON.parse(text));
-  return JSON.parse(text);
 }

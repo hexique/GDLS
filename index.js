@@ -1,6 +1,12 @@
+let data;
 
+async function init() {
+  data = await load_data();
+  console.log('YAAAAAAAAAAYYYYYYYY I LOADED THIS SHIT!!!!!! THE LENGTHHTH OF DATA IS:', data.length);
+}
 
-const data = load_data();
+init();
+
 const difficultyToInt = [
   "Unrated", "Auto", "Easy", "Normal", "Hard", "Harder", "Insane","Demon", "Easy Demon", "Medium Demon", "Hard Demon", "Insane Demon", "Extreme Demon",
 ]
