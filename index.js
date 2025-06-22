@@ -1,7 +1,7 @@
 let data = [];
 
 async function init() {
-  data = await loadAllData();
+  data = await load_data();
   console.log("data is loaded.");
 }
 
