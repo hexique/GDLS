@@ -540,7 +540,7 @@ function search(){
     } if(document.getElementById("songid").value != "") {
       pass = pass && filter.songid(level);
       used_filters.push("songid")
-    } if(document.getElementById("length").value != "") {
+    } if(document.getElementById("length").value != "Any") {
       pass = pass && filter.length(level);
       used_filters.push("length")
     }
