@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="анонимный месседжер как на 2б2т"/>
+    <title>GDLS</title>
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+.key-inp{
+  width: 200px;
+}
+    </style>
+</head>
+<body>
+
+    <div class="centered">
+        <h1>Levels statistics</h1>
+    </div>
+    <p>Key</p>
+    <select id="key" class="key-inp">
+        <option value="name">Name</option>
+        <option value="description">Description</option>
+        <option value="author">Author</option>
+        <option value="difficulty">Difficulty</option>
+        <option value="downloads">Downloads</option>
+        <option value="likes">Likes</option>
+        <option value="length">Length</option>
+        <option value="platformer">Platformer</option>
+        <option value="stars">Stars</option>
+        <option value="gameVersion">Game version</option>
+        <option value="version">Version</option>
+        <option value="copiedID">Copied ID</option>
+        <option value="twoPlayer">Two player</option>
+        <option value="officialSong">Official song ID</option>
+        <option value="customSong">Custom song ID</option>
+        <option value="coins">Coins</option>
+        <option value="verifiedCoins">Verified coins</option>
+        <option value="starsRequested">Stars requested</option>
+        <option value="objects">Objects</option>
+        <option value="cp">Rating</option>
+        <option value="songName">Song name</option>
+        <option value="songAuthor">Song author</option>
+        <option value="songSize">Song size</option>
+        <option value="songID">Song ID</option>
+        <option value="uploadGameVersion">Upload game version</option>
+    </select> <br>
+    <p>Sort by</p>
+    <select id="sortby" class="key-inp">
+        <option value="value">Value</option>
+        <option value="alphabet">Alphabet</option>
+        <option value="length">Length</option>
+    </select>
+    <input type="checkbox" class="checkbox" id="reverse-inp"> <label class="checkbox-label">Reverse</label> <br>
+
+    <button onclick="start()">Start</button>
+
+    <div id="result-container"></div>
+
+    <script src="load_data.js"></script>
+    <script src="stats.js"></script>
+
+</body>
+</html>
