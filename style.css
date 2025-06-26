@@ -36,12 +36,12 @@ input{
 label{
   color: #ffff;
   font-family: Arial;
-  font-size: 1.2em;
+  font-size: 1em;
   margin-bottom: 10px;
 }
 
-.checkbox-label{
-  margin-left: -240px;
+.checkbox{
+  width: 20px;
 }
 
 p{
@@ -104,7 +104,20 @@ button:hover{
     height: 0;
 }
 
-.version {
-  text-align: right;
-  margin-top: 0;
+td, th {
+  color: #ffff;
+  margin-right: 5px;
+}
+
+th {
+  text-align: left;
+  border: 1px solid;
+  border-color: #ffffff;
+}
+
+table {
+  border: 1px solid;
+  border-color: #ffffff;
+  font-size: 1.2em;
+  border-collapse: collapse;
 }
