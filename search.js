@@ -7,7 +7,8 @@ const versionToInt = [
 
 const years = [130629, 3938229, 15435856, 27788667, 40559842, 51591727, 58976287, 66144272, 77026243, 87321749, 98379505, 113708332, 118028739]
 const lengths = ["Tiny", "Short", "Medium", "Long", "XL", "Plat"]
-let output = []
+
+let used_filters = []
 
 function between(number, diapason){
   return parseInt(number) >= parseInt(diapason.toString().split(' ')[0]) && parseInt(number) <= parseInt(diapason.toString().split(' ')[1])
@@ -442,14 +443,15 @@ const filter = {
         return !current_key.toString().startsWith(value);
       case '!.endswith':
         return !current_key.toString().endsWith(value);
+
       default:
         return true;
     }
-  },
-  "length": (level) => {
+  }, 
+  "songname": (level) => {
     const operator = document.getElementById("length-cond").value;
     const value = document.getElementById("length").value;
-    const current_key = lengths.indexOf(level.length)
+    const current_key = level.songName
 
     if (value == '') return true;
 
@@ -458,14 +460,6 @@ const filter = {
         return current_key == value;
       case '!=':
         return current_key != value;
-      case '>':
-        return current_key > parseInt(value);
-      case '>=':
-        return current_key <= parseInt(value);
-      case '<':
-        return current_key < parseInt(value);
-      case '<=':
-        return current_key <= parseInt(value);
       case '.includes':
         return current_key.toString().includes(value);
       case '.startswith':
@@ -514,26 +508,308 @@ const filter = {
         return !current_key.toString().startsWith(value);
       case '!.endswith':
         return !current_key.toString().endsWith(value);
+      default:
+        return true;
+    }
+  },
+  "lvlposition": (level) => {
+    const operator = document.getElementById("index-cond").value;
+    const value = document.getElementById("index").value;
+    const current_key = parseInt(level.index)
+
+    if (value == '') return true;
+
+    switch(operator) {
+      case '=':
+        return current_key == parseInt(value);
+      case '!=':
+        return current_key != parseInt(value);
+      case '>':
+        return current_key > parseInt(value);
+      case '>=':
+        return current_key <= parseInt(value);
+      case '<':
+        return current_key < parseInt(value);
+      case '<=':
+        return current_key <= parseInt(value);
+      case '.between':
+        return between(current_key, value);
+      case '.includes':
+        return current_key.toString().includes(value);
+      case '.startswith':
+        return current_key.toString().startsWith(value);
+      case '.endswith':
+        return current_key.toString().endsWith(value);
+      case '!.includes':
+        return !current_key.toString().includes(value);
+      case '!.startswith':
+        return !current_key.toString().startsWith(value);
+      case '!.endswith':
+        return !current_key.toString().endsWith(value);
+      default:
+        return true;
+    }
+  },
+  "starsrequested": (level) => {
+    const operator = document.getElementById("starsrequested-cond").value;
+    const value = document.getElementById("starsrequested").value;
+    const current_key = level.starsRequested
+
+    if (value == '') return true;
+
+    switch(operator) {
+      case '=':
+        return current_key == parseInt(value);
+      case '!=':
+        return current_key != parseInt(value);
+      case '>':
+        return current_key > parseInt(value);
+      case '>=':
+        return current_key <= parseInt(value);
+      case '<':
+        return current_key < parseInt(value);
+      case '<=':
+        return current_key <= parseInt(value);
+      case '.between':
+        return between(current_key, value);
+      case '.includes':
+        return current_key.toString().includes(value);
+      case '.startswith':
+        return current_key.toString().startsWith(value);
+      case '.endswith':
+        return current_key.toString().endsWith(value);
+      case '!.includes':
+        return !current_key.toString().includes(value);
+      case '!.startswith':
+        return !current_key.toString().startsWith(value);
+      case '!.endswith':
+        return !current_key.toString().endsWith(value);
+      case '!.between':
+        return !between(current_key, value);
+      default:
+        return true;
+    }
+  },
+  "objects": (level) => {
+    const operator = document.getElementById("objects-cond").value;
+    const value = document.getElementById("objects").value;
+    const current_key = level.objects
+
+    if (value == '') return true;
+
+    switch(operator) {
+      case '=':
+        return current_key == parseInt(value);
+      case '!=':
+        return current_key != parseInt(value);
+      case '>':
+        return current_key > parseInt(value);
+      case '>=':
+        return current_key <= parseInt(value);
+      case '<':
+        return current_key < parseInt(value);
+      case '<=':
+        return current_key <= parseInt(value);
+      case '.between':
+        return between(current_key, value);
+      case '.includes':
+        return current_key.toString().includes(value);
+      case '.startswith':
+        return current_key.toString().startsWith(value);
+      case '.endswith':
+        return current_key.toString().endsWith(value);
+      case '!.includes':
+        return !current_key.toString().includes(value);
+      case '!.startswith':
+        return !current_key.toString().startsWith(value);
+      case '!.endswith':
+        return !current_key.toString().endsWith(value);
+      case '!.between':
+        return !between(current_key, value);
+
+      default:
+        return true;
+    }
+  },
+  "coins": (level) => {
+    const operator = document.getElementById("coins-cond").value;
+    const value = document.getElementById("coins").value;
+    const current_key = level.coins
+
+    if (value == '') return true;
+
+    switch(operator) {
+      case '=':
+        return current_key == parseInt(value);
+      case '!=':
+        return current_key != parseInt(value);
+      case '>':
+        return current_key > parseInt(value);
+      case '>=':
+        return current_key <= parseInt(value);
+      case '<':
+        return current_key < parseInt(value);
+      case '<=':
+        return current_key <= parseInt(value);
+      case '.between':
+        return between(current_key, value);
+      case '.includes':
+        return current_key.toString().includes(value);
+      case '.startswith':
+        return current_key.toString().startsWith(value);
+      case '.endswith':
+        return current_key.toString().endsWith(value);
+      case '!.includes':
+        return !current_key.toString().includes(value);
+      case '!.startswith':
+        return !current_key.toString().startsWith(value);
+      case '!.endswith':
+        return !current_key.toString().endsWith(value);
+      case '!.between':
+        return !between(current_key, value);
+
+      default:
+        return true;
+    }
+  },
+  "twoplayers": (level) => {
+    const operator = document.getElementById("twoplayer-cond").value;
+    const value = document.getElementById("twoplayer").value;
+    const current_key = level.twoPlayer
+
+    if (value == '') return true;
+
+    switch(operator) {
+      case '=':
+        return current_key == (value == "true");
+      case '!=':
+        return current_key != (value == "true")
+
+      default:
+        return true;
+    }
+  },
+  "verifiedcoins": (level) => {
+    const operator = document.getElementById("verifiedcoins-cond").value;
+    const value = document.getElementById("verifiedcoins").value;
+    const current_key = level.verifiedCoins
+
+    if (value == '') return true;
+
+    switch(operator) {
+      case '=':
+        return current_key == (value == "true");
+      case '!=':
+        return current_key != (value == "true")
+
       default:
         return true;
     }
   },
 }
 
+function sortByKey(arr, key) {
+
+  return arr.sort((x, y) => {
+    if(key == 'id') {
+      x[key] = parseInt(x[key])
+      y[key] = parseInt(y[key])
+    }
+    if (x[key] < y[key]) return -1;
+    if (x[key] > y[key]) return 1;
+    
+    return 0;
+    }
+  );
+}
+
+function reverseArray(arr){
+  let result = [];
+  for(let i = arr.length - 1; i >= 0; i--){
+    result.push(arr[i])
+  }
+  return result
+}
+
+function formatKeys(level) {
+  let result = ''
+  used_filters.forEach((key) => {
+    switch(key) {
+      case 'description':
+        result += `<a class="transparent">Description:</a> ${level.description}`
+        break
+      case 'author':
+        result += `<a class="transparent">Author:</a> ${level.author}`
+        break
+      case 'likes':
+        result += `<a class="transparent">Likes:</a> ${level.likes}`
+        break
+      case 'downloads':
+        result += `<a class="transparent">Downloads:</a> ${level.downloads}`
+        break
+      case 'difficulty':
+        result += `<a class="transparent">Difficulty:</a> ${level.difficulty}`
+        break
+      case 'rating':
+        result += `<a class="transparent">Rating:</a> ${["Unrated", "Starrate", "Feature", "Epic", "Mythic", "Legendary"][level.cp]}`
+        break
+      case 'gameVersion':
+        result += `<a class="transparent">Game version:</a> ${level.gameVersion}`
+        break
+      case 'uploadGameVersion':
+        result += `<a class="transparent">Upload game version:</a> ${level.uploadGameVersion}`
+        break
+      case 'uploadYear':
+        result += `<a class="transparent">Upload year:</a> ${idToYear(level.id)}`
+        break
+      case 'accountId':
+        result += `<a class="transparent">Account ID:</a> ${level.accountID}`
+        break
+      case 'playerId':
+        result += `<a class="transparent">Player ID:</a> ${level.playerID}`
+        break
+      case 'songId':
+        result += `<a class="transparent">Song ID:</a> ${level.songID}`
+        break
+      case 'songName':
+        result += `<a class="transparent">Song name:</a> ${level.songName}`
+        break
+      case 'length':
+        result += `<a class="transparent">Length:</a> ${level.length}`
+        break
+      case 'starsRequested':
+        result += `<a class="transparent">Stars requested:</a> ${level.starsRequested}`
+        break
+      case 'coins':
+        result += `<a class="transparent">Coins:</a> ${level.coins}`
+        break
+      case 'twoPlayer':
+        result += `<a class="transparent">Two players:</a> ${level.twoPlayer}`
+        break
+      case 'verifiedCoins':
+        result += `<a class="transparent">Verified coins:</a> ${level.verifiedCoins}`
+        break
+      default:
+        return
+    }
+    console.log(result)
+    result += '<br>'
+  })
+  return result
+}
+
 function search(){
   let result = data.filter(level => {
     let pass = true;
-    let used_filters = []
+    used_filters = []
    
     if(document.getElementById("name").value) {
       pass = pass && filter.name(level);
-      used_filters.push("name")
     } if(document.getElementById("description").value) {
       pass = pass && filter.description(level);
       used_filters.push("description")
     } if(document.getElementById("author").value) {
       pass = pass && filter.author(level);
-      used_filters.push("author")
     } if(document.getElementById("likes").value) {
       pass = pass && filter.likes(level);
       used_filters.push("likes")
@@ -548,35 +824,61 @@ function search(){
       used_filters.push("rating")
     } if(document.getElementById("gameversion").value != "Any") {
       pass = pass && filter.gameversion(level);
-      used_filters.push("gameversion")
+      used_filters.push("gameVersion")
     } if(document.getElementById("uploadgameversion").value != "Any") {
       pass = pass && filter.uploadgameversion(level);
-      used_filters.push("uploadgameversion")
+      used_filters.push("uploadGameVersion")
     } if(document.getElementById("uploadyear").value != "") {
       pass = pass && filter.uploadyear(level);
-      used_filters.push("uploadyear")
+      used_filters.push("uploadYear")
     } if(document.getElementById("id").value != "") {
       pass = pass && filter.id(level);
       used_filters.push("id")
     } if(document.getElementById("accountid").value != "") {
       pass = pass && filter.accountid(level);
-      used_filters.push("accountid")
+      used_filters.push("accountId")
     } if(document.getElementById("playerid").value != "") {
       pass = pass && filter.playerid(level);
-      used_filters.push("playerid")
+      used_filters.push("playerId")
     } if(document.getElementById("songid").value != "") {
       pass = pass && filter.songid(level);
-      used_filters.push("songid")
+      used_filters.push("songId")
+    } if(document.getElementById("songname").value != "") {
+      pass = pass && filter.songname(level);
+      used_filters.push("songName")
     } if(document.getElementById("length").value != "Any") {
       pass = pass && filter.length(level);
       used_filters.push("length")
+    } if(document.getElementById("index").value != "") {
+      pass = pass && filter.lvlposition(level);
+      used_filters.push("index")
+    } if(document.getElementById("starsrequested").value != "") {
+      pass = pass && filter.starsrequested(level);
+      used_filters.push("starsRequested")
+    } if(document.getElementById("coins").value != "") {
+      pass = pass && filter.coins(level);
+      used_filters.push("coins")
+    } if(document.getElementById("twoplayer").value != "Any") {
+      pass = pass && filter.twoplayers(level);
+      used_filters.push("twoPlayer")
+    } if(document.getElementById("verifiedcoins").value != "Any") {
+      pass = pass && filter.verifiedcoins(level);
+      used_filters.push("verifiedCoins")
+    } if(used_filters.indexOf(document.getElementById("sortBy-inp").value) == -1) {
+      used_filters.push(document.getElementById("sortBy-inp").value)
     }
+    console.log(used_filters)
     return pass;
   });
+  result = sortByKey(result, document.getElementById("sortBy-inp").value)
+  if(document.getElementById("reverseSort-inp")?.checked){
+    result = reverseArray(result)
+  }
 
   displayResult(result);
 }
 
+// Consts
 const MAX_RESULTS = 150;
 const CHUNK_SIZE = 150;
 
@@ -587,17 +889,18 @@ function displayResult(result) {
   let currentRange = 150;
   let displayedResults = 0;
   
+
+
   function displayChunk(start, end) {
     const chunk = result.slice(start, end);
     chunk.forEach((level) => {
       resultElement.innerHTML += 
-        `<p>Found level <strong>${level.name}</strong> at position ${level.index}<br>${level.songID}<br>
-        <strong><a href="https://gdbrowser.com/${level.id}" target="_blank">${level.id}</a></strong></p><br><br>`;
+        `<p><strong>${level.name}</strong> at position ${level.index}<br>${formatKeys(level)}
+${level.id}</p><br><br>`;
     });
     displayedResults += chunk.length;
   }
 
-  // Первоначальное отображение
   if (result.length > 150) {
     displayChunk(0, 150);
   } else if (result.length > 0) {
@@ -606,14 +909,10 @@ function displayResult(result) {
     resultElement.innerHTML = '<p>No results.</p>';
     return;
   }
-
-  // Функция для создания/обновления кнопки
   function updateShowMoreButton() {
-    // Удаляем старую кнопку если она есть
     const oldButton = document.getElementById("showMore-inp");
     if (oldButton) oldButton.remove();
 
-    // Добавляем новую кнопку если есть что показывать
     if (result.length > displayedResults) {
       const showMoreBtn = document.createElement("button");
       showMoreBtn.id = "showMore-inp";
@@ -632,11 +931,10 @@ function displayResult(result) {
         }
         
         displayChunk(nextStart, nextEnd);
-        updateShowMoreButton(); // Обновляем кнопку после загрузки
+        updateShowMoreButton();
       });
     }
   }
 
-  // Инициализируем кнопку
   updateShowMoreButton();
 }
