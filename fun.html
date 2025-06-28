@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="анонимный месседжер как на 2б2т"/>
+    <title>GDLS</title>
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="centered">
+        <h1>Fun</h1>
+
+        <h2>Get random level</h2>
+        <button onclick="fetchRandomLvl()">Get random level</button>
+        <div id="randomlvl-container"></div>
+
+        <h2>Get level by ID</h2>
+        <input id="lvlId-inp" placeholder="ID">
+        <button onclick="getLvlById()">Get level by ID</button>
+        <div id="lvlbyid-container"></div>
+
+        <h2>Fetch levels</h2>
+        <p>Min <input placeholder="ID" id="fetchLvlsMin-inp"></p>
+        <p>Max <input placeholder="ID" id="fetchLvlsMax-inp"></p><br>
+        <select id="type-inp">
+            <option value="index">Position</option>
+            <option value="id">ID</option>
+        </select>
+        <br><button onclick="fetchLevels()">Fetch</button>
+    </div>
+    <div id="fetchedlvls-container"></div>
+    <div class="centered">
+
+
+    </div>
+
+
+    <script src="load_data.js"></script>
+    <script src="fun.js"></script>
+
+</body>
+</html>
