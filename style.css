@@ -76,6 +76,10 @@ a{
   color: #ffff;
 }
 
+.transparent{
+  color: #6a6a6a;
+}
+
 button{
     margin-top: 15px;
     color: #ffffff;
@@ -96,13 +100,7 @@ button:hover{
     border-color: #ffff;
 }
 
-.options-panel[hidden] {
-    display: none;
-    opacity: 0;
-    margin: 0;
-    padding: 0;
-    height: 0;
-}
+
 
 td, th {
   color: #ffff;
