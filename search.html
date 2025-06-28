@@ -10,6 +10,10 @@
 </head>
 <body>
 
+    <div class="centered">
+        <h1>Level searcher</h1>
+    </div>
+
     <p>Name
     <select id="name-cond">
         <option value="=">=</option>
@@ -251,6 +255,19 @@
     </select>
     <input placeholder="467339" id="songid"></input> </p> 
 
+    <p>Song name
+    <select id="songname-cond">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+        <option value=".includes">Includes</option>
+        <option value=".startswith">Starts with</option>
+        <option value=".endswith">Ends with</option>
+        <option value="!.includes">Not includes</option>
+        <option value="!.startswith">Not starts with</option>
+        <option value="!.endswith">Not ends with</option>
+    </select>
+    <input placeholder="467339" id="songname"></input> </p> 
+
     <p>Level length
     <select id="length-cond">
         <option value="=">=</option>
@@ -270,7 +287,120 @@
         <option value="5">Plat</option>
     </select> </p>
 
-    <button onclick="search()">Search</button>
+    <p>Position
+    <select id="index-cond">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+        <option value=">">></option>
+        <option value="&lt;">&lt;</option>
+        <option value=">=">>=</option>
+        <option value="&lt;=">&lt;=</option>
+        <option value=".include">Include</option>
+        <option value=".startswith">Starts with</option>
+        <option value=".endswith">Ends with</option>
+        <option value="!.include">Not include</option>
+        <option value="!.startswith">Not starts with</option>
+        <option value="!.endswith">Not ends with</option>
+        <option value=".between">Between</option>
+    </select>
+    <input placeholder="0 - 1 951 419" id="index"></input> </p> 
+
+    <p>Stars requested
+    <select id="starsrequested-cond">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+        <option value=">">></option>
+        <option value="&lt;">&lt;</option>
+        <option value=">=">>=</option>
+        <option value="&lt;=">&lt;=</option>
+        <option value=".between">Between</option>
+        <option value=".include">Include</option>
+        <option value=".startswith">Starts with</option>
+        <option value=".endswith">Ends with</option>
+        <option value="!.include">Not include</option>
+        <option value="!.startswith">Not starts with</option>
+        <option value="!.endswith">Not ends with</option>
+    </select>
+    <input placeholder="1 - 10" id="starsrequested"></input> </p> 
+
+    <p>Objects
+    <select id="objects-cond">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+        <option value=">">></option>
+        <option value="&lt;">&lt;</option>
+        <option value=">=">>=</option>
+        <option value="&lt;=">&lt;=</option>
+        <option value=".between">Between</option>
+    </select>
+    <input placeholder="0 - 65 535" id="objects"></input> </p> 
+
+    <p>Coins
+    <select id="coins-cond">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+        <option value=">">></option>
+        <option value="&lt;">&lt;</option>
+        <option value=">=">>=</option>
+        <option value="&lt;=">&lt;=</option>
+        <option value=".between">Between</option>
+    </select>
+    <input placeholder="1 - 3" id="coins"></input> </p> 
+
+    <p>Two players
+    <select id="twoplayer-cond">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+    </select>
+    <select id="twoplayer">
+        <option value="Any">Any</option>
+        <option value="true">True</option>
+        <option value="false">False</option>
+    </select> </p> 
+
+    <p>Verified coins
+    <select id="verifiedcoins-cond">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+    </select>
+    <select id="verifiedcoins">
+        <option value="Any">Any</option>
+        <option value="true">True</option>
+        <option value="false">False</option>
+    </select> </p> <br> <br>
+
+    <p>Sort by
+    <select id="sortBy-inp">
+        <option value="id">ID</option>
+        <option value="name">Name</option>
+        <option value="description">Description</option>
+        <option value="author">Author</option>
+        <option value="difficulty">Difficulty</option>
+        <option value="downloads">Downloads</option>
+        <option value="likes">Likes</option>
+        <option value="length">Length</option>
+        <option value="platformer">Platformer</option>
+        <option value="stars">Stars</option>
+        <option value="gameVersion">Game version</option>
+        <option value="version">Version</option>
+        <option value="copiedID">Copied ID</option>
+        <option value="twoPlayer">Two player</option>
+        <option value="officialSong">Official song ID</option>
+        <option value="customSong">Custom song ID</option>
+        <option value="coins">Coins</option>
+        <option value="verifiedCoins">Verified coins</option>
+        <option value="starsRequested">Stars requested</option>
+        <option value="objects">Objects</option>
+        <option value="cp">Rating</option>
+        <option value="songName">Song name</option>
+        <option value="songAuthor">Song author</option>
+        <option value="songSize">Song size</option>
+        <option value="songID">Song ID</option>
+        <option value="uploadGameVersion">Upload game version</option>
+    </select> </p> <br>
+    <input type="checkbox" class="checkbox" id="reverseSort-inp"> <label>Reverse</label>
+
+    <br> <br ><button onclick="search()">Search</button>
     <!-- <button onclick="search()">I feel lucky</button> -->
 
     <div id="result"></div>
