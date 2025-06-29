@@ -171,8 +171,6 @@ const filter = {
     const value = difficultyToInt.indexOf(document.getElementById("difficulty").value)
     const current_key = difficultyToInt.indexOf(level.difficulty)
 
-    console.log(value)
-
     if (value == 'Any') return true;
 
     switch(operator) {
@@ -249,7 +247,6 @@ const filter = {
     const operator = document.getElementById("uploadgameversion-cond").value;
     const value = parseFloat(document.getElementById("uploadgameversion").value)
     const current_key = parseFloat(level.uploadGameVersion)
-    console.log(value, current_key)
 
     switch(operator) {
       case '=':
@@ -273,7 +270,6 @@ const filter = {
     const operator = document.getElementById("uploadyear-cond").value;
     const value = document.getElementById("uploadyear").value
     const current_key = idToYear(level.id)
-    console.log(value, current_key)
 
     switch(operator) {
       case '=':
@@ -792,7 +788,7 @@ function formatKeys(level) {
       default:
         return
     }
-    console.log(result)
+
     result += '<br>'
   })
   return result
@@ -864,12 +860,8 @@ function search(){
     } if(document.getElementById("verifiedcoins").value != "Any") {
       pass = pass && filter.verifiedcoins(level);
       used_filters.push("verifiedCoins")
-    } if(used_filters.indexOf(document.getElementById("sortBy-inp").value) == -1) {
-      used_filters.push(document.getElementById("sortBy-inp").value)
-    }
-    console.log(used_filters)
     return pass;
-  });
+  }});
   result = sortByKey(result, document.getElementById("sortBy-inp").value)
   if(document.getElementById("reverseSort-inp")?.checked){
     result = reverseArray(result)
