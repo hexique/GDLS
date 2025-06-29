@@ -860,8 +860,12 @@ function search(){
     } if(document.getElementById("verifiedcoins").value != "Any") {
       pass = pass && filter.verifiedcoins(level);
       used_filters.push("verifiedCoins")
+    } if(used_filters.indexOf(document.getElementById("sortBy-inp").value) == -1) {
+      used_filters.push(document.getElementById("sortBy-inp").value)
+    }
+
     return pass;
-  }});
+  });
   result = sortByKey(result, document.getElementById("sortBy-inp").value)
   if(document.getElementById("reverseSort-inp")?.checked){
     result = reverseArray(result)
