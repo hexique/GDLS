@@ -52,7 +52,7 @@ function displayLvlByIndex(position, isExist = true, target){
     } else {
         document.getElementById("lvlbyid-container").innerHTML = `<h3 style="margin-bottom: -5px; font-size=1.7em"><strong>Level ${target} is not exist</strong></h3><br>
 <br><h3 style="margin-bottom: -5px; margin-top: -15px; font-size=1.5em">Nearest levels:</h3><p>
-<br><a class="transparent"><br>Next level:</a> ${checkLvl(position+1, target)}</a>
+<br><a class="transparent"><br>Next level:</a> ${checkLvl(position, target)}</a>
 <br><a class="transparent">Previous level:</a> ${checkLvl(position-1, target)}</p>`
     }
 }
@@ -67,7 +67,6 @@ function fetchLevels(){
     document.getElementById("fetchedlvls-container").innerHTML = ''
     let range = [parseInt(document.getElementById("fetchLvlsMin-inp").value), parseInt(document.getElementById("fetchLvlsMax-inp").value)]
     if(range[0] > range[1]) range = [range[1], range[0]]
-    console.log()
     if(document.getElementById("type-inp").value == "index"){
         for(let i = range[0]; i <= range[1]; i++){
             document.getElementById("fetchedlvls-container").innerHTML += formatFetchedLvl(i)
