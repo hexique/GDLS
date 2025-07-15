@@ -129,7 +129,7 @@ const filter = {
       case '>':
         return current_key > parseInt(value);
       case '>=':
-        return current_key <= parseInt(value);
+        return current_key >= parseInt(value);
       case '<':
         return current_key < parseInt(value);
       case '<=':
@@ -156,7 +156,7 @@ const filter = {
       case '>':
         return current_key > parseInt(value);
       case '>=':
-        return current_key <= parseInt(value);
+        return current_key >= parseInt(value);
       case '<':
         return current_key < parseInt(value);
       case '<=':

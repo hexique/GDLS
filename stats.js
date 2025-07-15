@@ -6,13 +6,13 @@ function sortResult(sortBy = 'key') {
   console.log(entries)
 
   switch (sortBy) {
-    case 'key':
+    case 'alphabet':
       entries.sort(([keyA], [keyB]) => keyA.localeCompare(keyB));
       break;
     case 'value':
       entries.sort(([, valueA], [, valueB]) => valueA - valueB);
       break;
-    case 'keyLength':
+    case 'length':
       entries.sort(([keyA], [keyB]) => keyA.length - keyB.length);
       break;
     default:
@@ -56,9 +56,9 @@ function start(){
 }
 
 function displayResult(dict){
-    let displayResult = '<table> <tr><th>Key</th><th>Value</th></tr>';
+    let displayResult = '<table> <tr><th>Key</th><th>Value</th><th>Percentage</th></tr>';
     for(let i = 0; i < Object.keys(dict).length; i++) {
-        displayResult += `<tr><td>${Object.keys(dict)[i]}</td> <td>${Object.values(dict)[i]}</td></tr>`
+        displayResult += `<tr><td>${Object.keys(dict)[i]}</td> <td>${Object.values(dict)[i]} <td>${Math.floor(Object.values(dict)[i]/data.length*10000)/100}%</td></tr>`
     }
     document.getElementById("result-container").innerHTML = displayResult + '</table>';
 }
