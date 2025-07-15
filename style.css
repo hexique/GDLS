@@ -1,5 +1,11 @@
-body{
-  background-color: #1e1e1e;
+body {
+  background-color: #1b1b1b;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+div {
   margin-left: 50px;
 }
 
@@ -44,10 +50,14 @@ label{
   width: 20px;
 }
 
-p{
+p, strong{
   color: #ffff;
   font-family: Arial;
   margin-bottom: 0px;
+}
+
+p, a, strong{
+  font-family: Arial;
 }
 
 h1{
@@ -72,12 +82,20 @@ h3{
 }
 
 a{
-  text-decoration: none;
+  text-decoration-color: white;
   color: #ffff;
 }
 
 .transparent{
-  color: #6a6a6a;
+  color: #7e7e7e;
+}
+
+.green{
+  color: #00ff00;
+}
+
+.red{
+  color: #ff0000;
 }
 
 button{
@@ -86,12 +104,11 @@ button{
     background-color: #1b1b1b;
     border-color: #ffffff;
     font-size: 1em;
-    padding: 10px 10px;
-    border-width: 0.001em;
+    padding: 8px 8px;
     border-radius: 5px;
     border: solid;
     cursor: pointer;
-    transition: 0.25s ease-in-out;
+    transition: 0.1s ease-in-out;
 }
 
 button:hover{
@@ -99,8 +116,6 @@ button:hover{
     background-color: #ffff;
     border-color: #ffff;
 }
-
-
 
 td, th {
   color: #ffff;
@@ -118,4 +133,45 @@ table {
   border-color: #ffffff;
   font-size: 1.2em;
   border-collapse: collapse;
+}
+
+/* footer */
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Минимальная высота = весь экран */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+main {
+  flex: 1;
+  padding-bottom: 80px;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.15);
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  margin-top: auto;
+  box-sizing: border-box;
+  margin-top: auto; /* Прижимает к низу в flex-контейнере */
+  position: static; /* Обычное положение в потоке */
 }

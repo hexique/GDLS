@@ -3,8 +3,8 @@ function numberWithSpaces(x) { // thx stackoverflow
 }
 
 function fetchRandomLvl(){
-    const lvlPos = data[Math.floor(Math.random() * data.length)]
-    document.getElementById("randomlvl-container").innerHTML = `<p>${lvlPos.name} by ${lvlPos.author} at position ${lvlPos.index}<br>${lvlPos.id}</p>`
+    const level = data[Math.floor(Math.random() * data.length)]
+    document.getElementById("randomlvl-container").innerHTML = document.getElementById("lvlbyid-container").innerHTML = formatLevel(level)
 }
 
 function getLvlById(){
@@ -39,16 +39,20 @@ function checkLvl(position, target){
     }
 }
 
-function displayLvlByIndex(position, isExist = true, target){
-    if(isExist) { // dont forgot to fix this later
-        document.getElementById("lvlbyid-container").innerHTML = `<h3 style="margin-bottom: -5px;"><strong>${data[position].name}</strong></h3><br><p>by <strong>${data[position].author}</strong>
-<br><a class="transparent">Likes:</a> ${data[position].likes}
-<br><a class="transparent">Downloads:</a> ${data[position].downloads}
-<br><a class="transparent">Difficulty:</a> ${data[position].difficulty}
-<br><a class="transparent">Position:</a> ${data[position].index}
-<br><a class="transparent">ID:</a> ${data[position].id}
+function formatLevel(level){
+    return `<h3 style="margin-bottom: -5px;"><strong>${level.name}</strong></h3><br><p>by <strong>${level.author}</strong>
+<br><a class="transparent">Likes:</a> ${level.likes}
+<br><a class="transparent">Downloads:</a> ${level.downloads}
+<br><a class="transparent">Difficulty:</a> ${level.difficulty}
+<br><a class="transparent">Position:</a> ${level.index}
+<br><a class="transparent">ID:</a> ${level.id}
 <br><a class="transparent"><br>Next level:</a> ${checkLvl(position+1, target)}
 <br><a class="transparent">Previous level:</a> ${checkLvl(position-1, target)}</p>`
+}
+
+function displayLvlByIndex(position, isExist = true, target){
+    if(isExist) { // dont forgot to fix this later
+        document.getElementById("lvlbyid-container").innerHTML = formatLevel(level)
     } else {
         document.getElementById("lvlbyid-container").innerHTML = `<h3 style="margin-bottom: -5px; font-size=1.7em"><strong>Level ${target} is not exist</strong></h3><br>
 <br><h3 style="margin-bottom: -5px; margin-top: -15px; font-size=1.5em">Nearest levels:</h3><p>
