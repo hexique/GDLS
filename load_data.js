@@ -39,9 +39,9 @@ async function load_data() {
 
   return allData;
 }
-/*
-let data = [];
 
+let data = load_data();
+/*
 async function init() {
   data = await load_data();
   console.log("data is loaded.");
