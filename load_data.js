@@ -1,6 +1,6 @@
 async function load_data() {
   let allData = [];
-  const totalFiles = 34;
+  const totalFiles = 25;
   const contentDiv = document.querySelector('div');
 
   const originalContent = contentDiv.innerHTML;
@@ -30,8 +30,8 @@ async function load_data() {
     }
 
     const progressPercentage = ((i + 1) / totalFiles) * 100;
-    progressDiv.innerHTML = `<h2>Loading... ${progressPercentage.toFixed(2)}%</h2><p> <a class="transparent">Note: Since the site is hosted on GitHub Pages, where the 
-file size limit is 50 MB, all data has to be stored in 25 separate files, which can cause the download to take up to </a>2 minutes<a class="transparent">. Please be patient<p>`;
+    progressDiv.innerHTML = `<h2>Loading... ${progressPercentage.toFixed(2)}%</h2><p style="width: 120px"> <a class="transparent">Note: Since the site is hosted on GitHub Pages, where the 
+file size limit is 50 MB, all data has to be stored in 25 separate files, which can cause the download to take up to </a>4 minutes<a class="transparent">. Please be patient<p>`;
   }
 
   console.log(`total length: ${allData.length}`);
