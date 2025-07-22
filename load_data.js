@@ -1,7 +1,7 @@
 async function load_data() {
   let allData = [];
   const totalFiles = 34;
-  const contentDiv = document.getElementById('content');
+  const contentDiv = document.querySelector('div');
 
   const originalContent = contentDiv.innerHTML;
 
