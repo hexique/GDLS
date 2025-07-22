@@ -35,15 +35,13 @@ async function load_data() {
 
   console.log(`total length: ${allData.length}`);
 
-  // Восстанавливаем оригинальный контент
   contentDiv.innerHTML = originalContent;
 
   return allData;
 }
-
+/*
 let data = [];
 
-/*
 async function init() {
   data = await load_data();
   console.log("data is loaded.");
