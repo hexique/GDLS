@@ -10,6 +10,55 @@ const lengths = ["Tiny", "Short", "Medium", "Long", "XL", "Plat"]
 
 let used_filters = []
 
+document.querySelectorAll("select").forEach((element) => {
+  switch(element.className){
+    case 'int-select':
+      return element.innerHTML = `
+<option value="=">=</option>
+<option value="!=">!=</option>
+<option value=">">></option>
+<option value="&lt;">&lt;</option>
+<option value=">=">>=</option>
+<option value="&lt;=">&lt;=</option>
+<option value=".between">Between</option>
+<option value=".include">Includes</option>
+<option value=".startswith">Starts with</option>
+<option value=".endswith">Ends with</option>
+<option value="!.between">Not between</option>
+<option value="!.include">Not includes</option>
+<option value="!.startswith">Not starts with</option>
+<option value="!.endswith">Not ends with</option>
+`
+    case 'str-select':
+      return element.innerHTML = `
+<option value="=">=</option>
+<option value="!=">!=</option>
+<option value=".include">Includes</option>
+<option value=".startswith">Starts with</option>
+<option value=".endswith">Ends with</option>
+<option value="!.include">Not includes</option>
+<option value="!.startswith">Not starts with</option>
+<option value="!.endswith">Not ends with</option>
+`
+    case 'select-select': // yea
+      return element.innerHTML = `
+<option value="=">=</option>
+<option value="!=">!=</option>
+<option value=">">></option>
+<option value="&lt;">&lt;</option>
+<option value=">=">>=</option>
+<option value="&lt;=">&lt;=</option>
+`
+    case 'bool-select':
+      return element.innerHTML = `
+<option value="=">=</option>
+<option value="!=">!=</option>
+`
+    default:
+      console.log(element.className)
+  }
+})
+
 function between(number, diapason){
   return parseInt(number) >= parseInt(diapason.toString().split(' ')[0]) && parseInt(number) <= parseInt(diapason.toString().split(' ')[1])
 }
@@ -731,37 +780,37 @@ function formatKeys(level) {
   let result = ''
   used_filters.forEach((key) => {
     switch(key) {
-      case 'description':
+      case 'Description':
         result += `<a class="transparent">Description:</a> ${level.description}`
         break
-      case 'author':
+      case 'Author':
         result += `<a class="transparent">Author:</a> ${level.author}`
         break
-      case 'likes':
+      case 'Likes':
         result += `<a class="transparent">Likes:</a> ${level.likes}`
         break
-      case 'downloads':
+      case 'Downloads':
         result += `<a class="transparent">Downloads:</a> ${level.downloads}`
         break
-      case 'difficulty':
+      case 'Difficulty':
         result += `<a class="transparent">Difficulty:</a> ${level.difficulty}`
         break
-      case 'rating':
+      case 'Rating':
         result += `<a class="transparent">Rating:</a> ${["Unrated", "Starrate", "Feature", "Epic", "Mythic", "Legendary"][level.cp]}`
         break
-      case 'gameVersion':
+      case 'Game version':
         result += `<a class="transparent">Game version:</a> ${level.gameVersion}`
         break
-      case 'uploadGameVersion':
+      case 'Upload game version':
         result += `<a class="transparent">Upload game version:</a> ${level.uploadGameVersion}`
         break
-      case 'uploadYear':
+      case 'Upload year':
         result += `<a class="transparent">Upload year:</a> ${idToYear(level.id)}`
         break
-      case 'accountId':
+      case 'Account ID':
         result += `<a class="transparent">Account ID:</a> ${level.accountID}`
         break
-      case 'playerId':
+      case 'User ID':
         result += `<a class="transparent">Player ID:</a> ${level.playerID}`
         break
       case 'songId':
@@ -773,6 +822,9 @@ function formatKeys(level) {
       case 'length':
         result += `<a class="transparent">Length:</a> ${level.length}`
         break
+      case 'version':
+        result += `<a class="transparent">Version:</a> ${level.version}`
+        break
       case 'starsRequested':
         result += `<a class="transparent">Stars requested:</a> ${level.starsRequested}`
         break
@@ -781,6 +833,9 @@ function formatKeys(level) {
         break
       case 'twoPlayer':
         result += `<a class="transparent">Two players:</a> ${level.twoPlayer}`
+        break
+      case 'objects':
+        result += `<a class="transparent">Objects:</a> ${level.objects}`
         break
       case 'verifiedCoins':
         result += `<a class="transparent">Verified coins:</a> ${level.verifiedCoins}`
@@ -803,63 +858,61 @@ function search(){
       pass = pass && filter.name(level);
     } if(document.getElementById("description").value) {
       pass = pass && filter.description(level);
-      used_filters.push("description")
+      used_filters.push("Description")
     } if(document.getElementById("author").value) {
       pass = pass && filter.author(level);
+      used_filters.push("Author")
     } if(document.getElementById("likes").value) {
       pass = pass && filter.likes(level);
-      used_filters.push("likes")
+      used_filters.push("Likes")
     } if(document.getElementById("downloads").value) {
       pass = pass && filter.downloads(level);
-      used_filters.push("downloads")
+      used_filters.push("Downloads")
     } if(document.getElementById("difficulty").value != "Any") {
       pass = pass && filter.difficulty(level);
-      used_filters.push("difficulty")
+      used_filters.push("Difficulty")
     } if(document.getElementById("rating").value != "Any") {
       pass = pass && filter.rating(level);
-      used_filters.push("rating")
+      used_filters.push("Rating")
     } if(document.getElementById("gameversion").value != "Any") {
       pass = pass && filter.gameversion(level);
-      used_filters.push("gameVersion")
+      used_filters.push("Game version")
     } if(document.getElementById("uploadgameversion").value != "Any") {
       pass = pass && filter.uploadgameversion(level);
-      used_filters.push("uploadGameVersion")
+      used_filters.push("Upload game version")
     } if(document.getElementById("uploadyear").value != "") {
       pass = pass && filter.uploadyear(level);
-      used_filters.push("uploadYear")
+      used_filters.push("Upload year")
     } if(document.getElementById("id").value != "") {
       pass = pass && filter.id(level);
-      used_filters.push("id")
+      used_filters.push("ID")
     } if(document.getElementById("accountid").value != "") {
       pass = pass && filter.accountid(level);
-      used_filters.push("accountId")
+      used_filters.push("Account ID")
     } if(document.getElementById("playerid").value != "") {
       pass = pass && filter.playerid(level);
-      used_filters.push("playerId")
+      used_filters.push("Player ID")
     } if(document.getElementById("songid").value != "") {
       pass = pass && filter.songid(level);
-      used_filters.push("songId")
+      used_filters.push("Song ID")
     } if(document.getElementById("songname").value != "") {
       pass = pass && filter.songname(level);
-      used_filters.push("songName")
+      used_filters.push("Song name")
     } if(document.getElementById("length").value != "Any") {
       pass = pass && filter.length(level);
-      used_filters.push("length")
+      used_filters.push("Length")
     } if(document.getElementById("index").value != "") {
       pass = pass && filter.lvlposition(level);
-      used_filters.push("index")
+      used_filters.push("Index")
+    } if(document.getElementById("version").value != "") {
+      pass = pass && filter.starsrequested(level);
+      used_filters.push("Version")
     } if(document.getElementById("starsrequested").value != "") {
       pass = pass && filter.starsrequested(level);
-      used_filters.push("starsRequested")
-    } if(document.getElementById("coins").value != "") {
-      pass = pass && filter.coins(level);
-      used_filters.push("coins")
-    } if(document.getElementById("twoplayer").value != "Any") {
-      pass = pass && filter.twoplayers(level);
-      used_filters.push("twoPlayer")
-    } if(document.getElementById("verifiedcoins").value != "Any") {
-      pass = pass && filter.verifiedcoins(level);
-      used_filters.push("verifiedCoins")
+      used_filters.push("Stars requested")
+    } if(document.getElementById("objects").value) {
+      pass = pass && filter.objects(level);
+      used_filters.push("objects")
     } if(used_filters.indexOf(document.getElementById("sortBy-inp").value) == -1) {
       used_filters.push(document.getElementById("sortBy-inp").value)
     }
@@ -872,8 +925,33 @@ function search(){
   }
 
   displayResult(result);
+  return result;
 }
 
+function reset(){
+  document.querySelectorAll("input").forEach((element) => {
+    element.value = ''
+  })
+  document.querySelectorAll("select").forEach((element) => {
+    if(element.id.endsWith('cond')) 
+      element.value = '='
+    else if(element.id == 'sortBy-inp') {
+      console.log(element.id)
+      element.value = 'ID'
+    } else { element.value = 'Any' } 
+  })
+}
+
+function downloadResult(result){
+  const blob = new Blob([JSON.stringify(result)], { type: 'text/plain' });
+
+  const url = URL.createObjectURL(blob);
+    
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'result.json';
+  a.click();
+}
 // Consts
 const MAX_RESULTS = 150;
 const CHUNK_SIZE = 150;

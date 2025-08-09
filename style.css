@@ -9,6 +9,10 @@ div {
   margin-left: 50px;
 }
 
+hr {
+  border: 0.5px solid #2d2d2d
+}
+
 .centered{
   text-align: center;
 }
@@ -48,6 +52,10 @@ label{
 
 .checkbox{
   width: 20px;
+}
+
+.upscaled {
+  image-rendering: pixelated;
 }
 
 p, strong{
@@ -102,13 +110,12 @@ button{
     margin-top: 15px;
     color: #ffffff;
     background-color: #1b1b1b;
-    border-color: #ffffff;
+    border: #ffffff solid 2.5px;
     font-size: 1em;
     padding: 8px 8px;
     border-radius: 5px;
-    border: solid;
     cursor: pointer;
-    transition: 0.1s ease-in-out;
+    transition: 0.2s ease-in-out;
 }
 
 button:hover{
@@ -120,6 +127,7 @@ button:hover{
 td, th {
   color: #ffff;
   margin-right: 5px;
+  font-family: Arial;
 }
 
 th {
@@ -172,6 +180,10 @@ footer {
   width: 100%;
   margin-top: auto;
   box-sizing: border-box;
-  margin-top: auto; /* Прижимает к низу в flex-контейнере */
-  position: static; /* Обычное положение в потоке */
+  margin-top: auto;
+  position: static;
+}
+
+ul, ol, li {
+  color: white
 }
