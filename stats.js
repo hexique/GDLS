@@ -37,7 +37,12 @@ function start(){
     result = {}
     let current_key;
     for(let i=0; i<data.length; i++){
-        current_key = data[i][key]
+        if(document.getElementById("length-inp")?.checked) {
+          current_key = data[i][key].length
+        } else {
+          current_key = data[i][key]
+        }
+        
         if(!result.hasOwnProperty(current_key) ){
             result[current_key] = 1
         } else {
