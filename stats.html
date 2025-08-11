@@ -3,33 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="анонимный месседжер как на 2б2т"/>
+    <meta name="description" content="Explore for 1 941 420 Geometry Dash levels"/>
     <title>GDLS</title>
     <link rel="icon" type="image/x-icon" href="img/logo.png">
     <link rel="stylesheet" href="style.css">
-    <style>
-.key-inp{
-  width: 200px;
-}
+    <link rel="stylesheet" href="table.css">
 
-td {
-  border-right: 1px solid #ddd;
-  padding: 3px;
-  padding-right: 10px;
-  padding-left: 10px;
-
-}
-
-td:last-child {
-  border-right: none;
-}
-
-th {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-    </style>
 </head>
 <body>
     
@@ -71,10 +50,22 @@ th {
           <option value="value">Value</option>
           <option value="alphabet">Alphabet</option>
           <option value="length">Length</option>
-      </select>
-      <input type="checkbox" class="checkbox" id="reverse-inp" checked> <label class="checkbox-label">Reverse</label> <br>
+      </select> <br>
 
-      <button onclick="start()">Start</button><br><br><br><br>
+      <p>Split by</p>
+      <select id="splitby" class="key-inp">
+          <option value="nosplit">No split</option>
+          <option value="sentences">Sentences (.!?)</option>
+          <option value="words">Words ( ,.!?())</option>
+          <option value="raw-words">Raw words ( )</option>
+          <option value="symbols">Symbols</option>
+      </select> <br>
+
+      <br>
+      <input type="checkbox" class="checkbox" id="reverse-inp" checked> <label class="checkbox-label">Reverse</label> 
+      <input type="checkbox" class="checkbox" id="length-inp" checked> <label class="checkbox-label">Use length</label>
+
+      <br> <button onclick="start()">Start</button><br><br><br><br>
     </div>
 
     <div id="result-container" style="font-family: Arial, Helvetica, sans-serif;"></div>
@@ -82,7 +73,7 @@ th {
     <footer>
         <div class="footer-content">
             <strong>Other pages</strong><br>
-            <p><a href="index.html">Main page</a> <a href="search.html">Level search</a> <a href="fun.html">Fun</a> <a href="unlisted.html">Unlisted levels</a></p>
+            <p><a href="index.html">Main page</a> · <a href="search.html">Level search</a> · <a href="fun.html">Fun</a> · <a href="unlisted.html">Unlisted levels finder</a></p>
         </div>
     </footer>
 

@@ -1,3 +1,5 @@
+// sorry for spaghetti code
+
 const difficultyToInt = [
   "Unrated", "Auto", "Easy", "Normal", "Hard", "Harder", "Insane","Demon", "Easy Demon", "Medium Demon", "Hard Demon", "Insane Demon", "Extreme Demon",
 ]
@@ -9,6 +11,7 @@ const years = [130629, 3938229, 15435856, 27788667, 40559842, 51591727, 58976287
 const lengths = ["Tiny", "Short", "Medium", "Long", "XL", "Plat"]
 
 let used_filters = []
+let resultOG;
 
 document.querySelectorAll("select").forEach((element) => {
   switch(element.className){
@@ -21,7 +24,7 @@ document.querySelectorAll("select").forEach((element) => {
 <option value=">=">>=</option>
 <option value="&lt;=">&lt;=</option>
 <option value=".between">Between</option>
-<option value=".include">Includes</option>
+<option value=".includes">Includes</option>
 <option value=".startswith">Starts with</option>
 <option value=".endswith">Ends with</option>
 <option value="!.between">Not between</option>
@@ -33,7 +36,7 @@ document.querySelectorAll("select").forEach((element) => {
       return element.innerHTML = `
 <option value="=">=</option>
 <option value="!=">!=</option>
-<option value=".include">Includes</option>
+<option value=".includes">Includes</option>
 <option value=".startswith">Starts with</option>
 <option value=".endswith">Ends with</option>
 <option value="!.include">Not includes</option>
@@ -68,37 +71,46 @@ function idToYear(id){
     if(parseInt(id) <= years[year]) return year+2013
 }
 
+function filterLevel(type, operator, value, current_key, ) {
+  operator = document.getElementById(operator).value;
+  value = document.getElementById(value).value;
+  switch(operator) {
+    case '=':
+      return current_key == value.toString();
+    case '!=':
+      return current_key != value.toString();
+    case '>':
+      return parseInt(current_key) > parseInt(value);
+    case '>=':
+      return parseInt(current_key) >= parseInt(value);
+    case '<':
+      return parseInt(current_key) < parseInt(value);
+    case '<=':
+      return parseInt(current_key) <= parseInt(value);
+    case '.between':
+      return between(current_key, value);
+    case '.includes':
+      return current_key.toString().includes(value);
+    case '.startswith':
+      return current_key.toString().startsWith(value);
+    case '.endswith':
+      return current_key.toString().endsWith(value);
+    case '!.includes':
+      return !current_key.toString().includes(value);
+    case '!.startswith':
+      return !current_key.toString().startsWith(value);
+    case '!.endswith':
+      return !current_key.toString().endsWith(value);
+    case '!.between':
+      return !between(current_key, value);
+    default:
+      return true;
+  }
+}
+
 const filter = {
   "name": (level) => {
-    const operator = document.getElementById("name-cond").value;
-    const value = document.getElementById("name").value;
-
-    if (value == '') return true;
-
-    switch(operator) {
-      case '=':
-        if(value == "?.numeric") return isNaN(parseInt(level.name))
-        else if(value.startsWith("?.length ")) return level.name.length === parseInt(value.split(" ")[value.split(" ").length-1])
-        return level.name == value;
-      case '.includes':
-        return level.name.includes(value);
-      case '.startswith':
-        return level.name.startsWith(value);
-      case '.endswith':
-        return level.name.endsWith(value);
-      case '!=':
-        if(value == "?.numeric") return !isNaN(parseInt(level.name))
-        else if(value.startsWith("?.length ")) return level.name.length != parseInt(value.split(" ")[value.split(" ").length-1])
-        return level.name != value;
-      case '!.includes':
-        return !level.name.includes(value);
-      case '!.startswith':
-        return !level.name.startsWith(value);
-      case '!.endswith':
-        return !level.name.endsWith(value);
-      default:
-        return true;
-    }
+    return filterLevel("int/str", "name-cond", "name", level.name)
   },  
   "description": (level) => {
     const operator = document.getElementById("description-cond").value;
@@ -813,31 +825,31 @@ function formatKeys(level) {
       case 'User ID':
         result += `<a class="transparent">Player ID:</a> ${level.playerID}`
         break
-      case 'songId':
+      case 'Song ID':
         result += `<a class="transparent">Song ID:</a> ${level.songID}`
         break
-      case 'songName':
+      case 'Song name':
         result += `<a class="transparent">Song name:</a> ${level.songName}`
         break
-      case 'length':
+      case 'Length':
         result += `<a class="transparent">Length:</a> ${level.length}`
         break
-      case 'version':
+      case 'Version':
         result += `<a class="transparent">Version:</a> ${level.version}`
         break
-      case 'starsRequested':
+      case 'Stars requested':
         result += `<a class="transparent">Stars requested:</a> ${level.starsRequested}`
         break
-      case 'coins':
+      case 'Coins':
         result += `<a class="transparent">Coins:</a> ${level.coins}`
         break
-      case 'twoPlayer':
+      case 'Two player':
         result += `<a class="transparent">Two players:</a> ${level.twoPlayer}`
         break
-      case 'objects':
+      case 'Objects':
         result += `<a class="transparent">Objects:</a> ${level.objects}`
         break
-      case 'verifiedCoins':
+      case 'Verified coins':
         result += `<a class="transparent">Verified coins:</a> ${level.verifiedCoins}`
         break
       default:
@@ -856,6 +868,7 @@ function search(){
    
     if(document.getElementById("name").value) {
       pass = pass && filter.name(level);
+      used_filters.push("Name")
     } if(document.getElementById("description").value) {
       pass = pass && filter.description(level);
       used_filters.push("Description")
@@ -912,7 +925,7 @@ function search(){
       used_filters.push("Stars requested")
     } if(document.getElementById("objects").value) {
       pass = pass && filter.objects(level);
-      used_filters.push("objects")
+      used_filters.push("Objects")
     } if(used_filters.indexOf(document.getElementById("sortBy-inp").value) == -1) {
       used_filters.push(document.getElementById("sortBy-inp").value)
     }
@@ -925,46 +938,55 @@ function search(){
   }
 
   displayResult(result);
-  return result;
 }
 
 function reset(){
+  document.querySelectorAll("select").forEach((element) => {
+    console.log(element.id)
+    if(element.id.endsWith('cond')) {
+      element.value = '='
+    } else if(element.id === 'sortBy-inp') {
+      
+    } else { element.value = 'Any' } 
+  })
   document.querySelectorAll("input").forEach((element) => {
     element.value = ''
   })
-  document.querySelectorAll("select").forEach((element) => {
-    if(element.id.endsWith('cond')) 
-      element.value = '='
-    else if(element.id == 'sortBy-inp') {
-      console.log(element.id)
-      element.value = 'ID'
-    } else { element.value = 'Any' } 
-  })
+  used_filters = [];
 }
 
-function downloadResult(result){
-  const blob = new Blob([JSON.stringify(result)], { type: 'text/plain' });
+function downloadResult(result, output){
+  const blob = new Blob([result], { type: 'text/plain' });
 
-  const url = URL.createObjectURL(blob);
-    
   const a = document.createElement('a');
-  a.href = url;
-  a.download = 'result.json';
+  a.href = URL.createObjectURL(blob);
+  a.download = output;
   a.click();
 }
+
+function objToList(result){
+  let idList = []
+  result.forEach((element) => {idList.push(element.id)})
+  let pattern = `<?xml version="1.0"?><plist version="1.0" gjver="2.0"><dict><k>kCEK</k><i>12</i><k>k2</k><s>Result</s><k>k5</k><s>-</s><k>k60</k><i>13711912</i><k>k7</k><i>-1</i><k>k21</k><i>2</i><k>k47</k><t /><k>k96</k><s>${idList.join(",")}</s><k>k114</k><i>47</i><k>k97</k><d><k>0</k><d><k>kCEK</k><i>4</i><k>k2</k><s>-</s><k>k5</k><s>-</s><k>k16</k><i>1</i><k>k50</k><i>45</i></d></d></dict></plist>`
+  downloadResult(pattern, "result.gmdl")
+}
+
 // Consts
 const MAX_RESULTS = 150;
 const CHUNK_SIZE = 150;
 
 function displayResult(result) {
   const resultElement = document.getElementById("result");
-  resultElement.innerHTML = `<p>Found ${result.length} results.<p><br>`;
+  resultOG = JSON.stringify(result)
+  
+  resultElement.innerHTML = `<button onclick="downloadResult(resultOG, 'result.json')">Download JSON</button>
+<button onclick="objToList(JSON.parse(resultOG))">Download GMDL</button>
+<p><a class="transparent">Used attributes: ${used_filters.length != 1 ? used_filters.slice(0, used_filters.length - 1).join(", ") : "-"}</a><br>
+Found ${result.length} results.<p><br>`;
   
   let currentRange = 150;
   let displayedResults = 0;
   
-
-
   function displayChunk(start, end) {
     const chunk = result.slice(start, end);
     chunk.forEach((level) => {
@@ -980,7 +1002,7 @@ ${level.id}</p><br><br>`;
   } else if (result.length > 0) {
     displayChunk(0, result.length);
   } else {
-    resultElement.innerHTML = '<p>No results.</p>';
+    resultElement.innerHTML = `<p><a class="transparent">Used attributes: ${used_filters.length != 1 ? used_filters.slice(0, used_filters.length - 1).join(", ") : "-"}</a><br>No results.</p>`;
     return;
   }
   function updateShowMoreButton() {
