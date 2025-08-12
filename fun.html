@@ -16,7 +16,7 @@
         <div id="randomlvl-container"></div>
 
         <input id="lvlId-inp" placeholder="ID"><br><br>
-        <button onclick="getLvlById()">Get level by ID</button>
+        <button onclick="getLvlById(parseInt(document.getElementById('lvlId-inp').value))">Get level by ID</button>
         <button onclick="fetchRandomLvl()">Get random level</button>
         <div id="lvlbyid-container"></div>
 
@@ -30,6 +30,13 @@
         <br><button onclick="fetchLevels()">Fetch</button>
     </div>
     <div id="fetchedlvls-container"></div>
+
+    <footer>
+        <div class="footer-content">
+            <strong>Other pages</strong><br>
+            <p><a href="index.html">Main page</a> · <a href="search.html">Level search</a> · <a href="stats.html">Statistics</a> · <a href="unlisted.html">Unlisted level finder</a></p>
+        </div>
+    </footer>
 
     <script src="load_data.js"></script>
     <script src="fun.js"></script>
