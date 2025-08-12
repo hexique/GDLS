@@ -8,7 +8,6 @@ function fetchRandomLvl(){
 }
 
 function getLvlById(targetId){
-    
     for(let i=0; i<data.length; i++) {
         if(parseInt(data[i].id) == targetId){
             displayLvlByIndex(data[i].index, true, targetId)
@@ -44,8 +43,8 @@ function formatLevel(level, target){
 <br><a class="transparent">Difficulty:</a> ${level.difficulty}
 <br><a class="transparent">Position:</a> ${level.index}
 <br><a class="transparent">ID:</a> ${level.id}
-<br><a class="transparent"><br>Next level:</a> ${checkLvl(level.index+1, target)}
-<br><a class="transparent">Previous level:</a> ${checkLvl(level.index-1, target)}</p>`
+<br><a class="transparent">Previous level:</a> ${checkLvl(level.index-1, target)}<br>
+<br><a class="transparent">Next level:</a> ${checkLvl(level.index+1, target)}</p>`
 }
 
 function displayLvlByIndex(position, isExist = true, target){
@@ -69,6 +68,7 @@ function fetchLevels(){
     document.getElementById("fetchedlvls-container").innerHTML = ''
     let range = [parseInt(document.getElementById("fetchLvlsMin-inp").value), parseInt(document.getElementById("fetchLvlsMax-inp").value)]
     if(range[0] > range[1]) range = [range[1], range[0]]
+    
     if(document.getElementById("type-inp").value == "index"){
         for(let i = range[0]; i <= range[1]; i++){
             document.getElementById("fetchedlvls-container").innerHTML += formatFetchedLvl(i)
