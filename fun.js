@@ -43,7 +43,7 @@ function formatLevel(level, target){
 <br><a class="transparent">Difficulty:</a> ${level.difficulty}
 <br><a class="transparent">Position:</a> ${level.index}
 <br><a class="transparent">ID:</a> ${level.id}
-<br><a class="transparent">Previous level:</a> ${checkLvl(level.index-1, target)}<br>
+<br><br><a class="transparent">Previous level:</a> ${checkLvl(level.index-1, target)}
 <br><a class="transparent">Next level:</a> ${checkLvl(level.index+1, target)}</p>`
 }
 
@@ -53,8 +53,8 @@ function displayLvlByIndex(position, isExist = true, target){
     } else {
         document.getElementById("lvlbyid-container").innerHTML = `<h3 style="margin-bottom: -5px; font-size=1.7em"><strong>Level ${target} is not exist</strong></h3><br>
 <br><h3 style="margin-bottom: -5px; margin-top: -15px; font-size=1.5em">Nearest levels:</h3><p>
-<br><a class="transparent"><br>Next level:</a> ${checkLvl(position, target)}</a>
-<br><a class="transparent">Previous level:</a> ${checkLvl(position-1, target)}</p>`
+<br><a class="transparent">Previous level:</a> ${checkLvl(position-1, target)}</p>
+<br><a class="transparent"><br>Next level:</a> ${checkLvl(position, target)}</a>`
     }
 }
 
@@ -66,7 +66,16 @@ function formatFetchedLvl(level){
 
 function fetchLevels(){
     document.getElementById("fetchedlvls-container").innerHTML = ''
-    let range = [parseInt(document.getElementById("fetchLvlsMin-inp").value), parseInt(document.getElementById("fetchLvlsMax-inp").value)]
+    let range;
+    if(!document.getElementById("fetchLvlsMax-inp").value){
+        range = [parseInt(document.getElementById("fetchLvlsMin-inp").value), parseInt(document.getElementById("fetchLvlsMin-inp").value)]
+    } else if(!document.getElementById("fetchLvlsMin-inp").value){
+        range = [parseInt(document.getElementById("fetchLvlsMax-inp").value), parseInt(document.getElementById("fetchLvlsMax-inp").value)]
+    } else {
+        range = [parseInt(document.getElementById("fetchLvlsMin-inp").value), parseInt(document.getElementById("fetchLvlsMax-inp").value)]
+    }
+    console.log(range)
+    
     if(range[0] > range[1]) range = [range[1], range[0]]
     
     if(document.getElementById("type-inp").value == "index"){
