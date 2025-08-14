@@ -1,3 +1,5 @@
+init()
+
 function numberWithSpaces(x) { // thx stackoverflow
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }

@@ -13,55 +13,57 @@ const lengths = ["Tiny", "Short", "Medium", "Long", "XL", "Plat"]
 let used_filters = []
 let resultOG;
 
-document.querySelectorAll("select").forEach((element) => {
-  switch(element.className){
-    case 'int-select':
-      return element.innerHTML = `
-<option value="=">=</option>
-<option value="!=">!=</option>
-<option value=">">></option>
-<option value="&lt;">&lt;</option>
-<option value=">=">>=</option>
-<option value="&lt;=">&lt;=</option>
-<option value=".between">Between</option>
-<option value=".includes">Includes</option>
-<option value=".startswith">Starts with</option>
-<option value=".endswith">Ends with</option>
-<option value="!.between">Not between</option>
-<option value="!.include">Not includes</option>
-<option value="!.startswith">Not starts with</option>
-<option value="!.endswith">Not ends with</option>
-`
-    case 'str-select':
-      return element.innerHTML = `
-<option value="=">=</option>
-<option value="!=">!=</option>
-<option value=".includes">Includes</option>
-<option value=".startswith">Starts with</option>
-<option value=".endswith">Ends with</option>
-<option value="!.include">Not includes</option>
-<option value="!.startswith">Not starts with</option>
-<option value="!.endswith">Not ends with</option>
-`
-    case 'select-select': // yea
-      return element.innerHTML = `
-<option value="=">=</option>
-<option value="!=">!=</option>
-<option value=">">></option>
-<option value="&lt;">&lt;</option>
-<option value=">=">>=</option>
-<option value="&lt;=">&lt;=</option>
-`
-    case 'bool-select':
-      return element.innerHTML = `
-<option value="=">=</option>
-<option value="!=">!=</option>
-`
-    default:
-      console.log(element.className)
-  }
+console.log(document.querySelectorAll("select"))
+init().then(() => {
+  document.querySelectorAll("select").forEach((element) => {
+    switch(element.className){
+      case 'int-select':
+        return element.innerHTML = `
+  <option value="=">=</option>
+  <option value="!=">!=</option>
+  <option value=">">></option>
+  <option value="&lt;">&lt;</option>
+  <option value=">=">>=</option>
+  <option value="&lt;=">&lt;=</option>
+  <option value=".between">Between</option>
+  <option value=".includes">Includes</option>
+  <option value=".startswith">Starts with</option>
+  <option value=".endswith">Ends with</option>
+  <option value="!.between">Not between</option>
+  <option value="!.include">Not includes</option>
+  <option value="!.startswith">Not starts with</option>
+  <option value="!.endswith">Not ends with</option>
+  `
+      case 'str-select':
+        return element.innerHTML = `
+  <option value="=">=</option>
+  <option value="!=">!=</option>
+  <option value=".includes">Includes</option>
+  <option value=".startswith">Starts with</option>
+  <option value=".endswith">Ends with</option>
+  <option value="!.include">Not includes</option>
+  <option value="!.startswith">Not starts with</option>
+  <option value="!.endswith">Not ends with</option>
+  `
+      case 'select-select': // yea
+        return element.innerHTML = `
+  <option value="=">=</option>
+  <option value="!=">!=</option>
+  <option value=">">></option>
+  <option value="&lt;">&lt;</option>
+  <option value=">=">>=</option>
+  <option value="&lt;=">&lt;=</option>
+  `
+      case 'bool-select':
+        return element.innerHTML = `
+  <option value="=">=</option>
+  <option value="!=">!=</option>
+  `
+      default:
+        console.log(element.className)
+    }
+  })
 })
-
 function between(number, diapason){
   return parseInt(number) >= parseInt(diapason.toString().split(' ')[0]) && parseInt(number) <= parseInt(diapason.toString().split(' ')[1])
 }
