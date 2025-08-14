@@ -1,3 +1,4 @@
+init()
 let result = {}
 
 function sortResult(sortBy = 'key') {
@@ -61,8 +62,9 @@ function start(){
 }
 
 function displayResult(dict){
+    let max_length = Object.keys(dict).length >= 250 ? 200 : Object.keys(dict).length
     let displayResult = '<table> <tr><th>Key</th><th>Value</th><th>Percentage</th></tr>';
-    for(let i = 0; i < Object.keys(dict).length; i++) {
+    for(let i = 0; i < max_length; i++) {
         displayResult += `<tr><td>${Object.keys(dict)[i]}</td> <td>${Object.values(dict)[i]} <td>${Math.floor(Object.values(dict)[i]/data.length*10000)/100}%</td></tr>`
     }
     document.getElementById("result-container").innerHTML = displayResult + '</table>';
