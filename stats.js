@@ -43,12 +43,14 @@ function start(){
         } else {
           current_key = data[i][key]
         }
-        
+        current_key = `<a style="display: none">[</a>${current_key}<a style="display: none">]</a>`
         if(!result.hasOwnProperty(current_key) ){
             result[current_key] = 1
         } else {
             result[current_key] ++
         }
+
+
     }
 
     console.log(document.getElementById("sortby").value)
