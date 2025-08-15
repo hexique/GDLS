@@ -55,8 +55,8 @@ function displayLvlByIndex(position, isExist = true, target){
     } else {
         document.getElementById("lvlbyid-container").innerHTML = `<h3 style="margin-bottom: -5px; font-size=1.7em"><strong>Level ${target} is not exist</strong></h3><br>
 <br><h3 style="margin-bottom: -5px; margin-top: -15px; font-size=1.5em">Nearest levels:</h3><p>
-<br><a class="transparent">Previous level:</a> ${checkLvl(position-1, target)}</p>
-<br><a class="transparent"><br>Next level:</a> ${checkLvl(position, target)}</a>`
+<br><a class="transparent">Previous level:</a> ${checkLvl(position-1, target)}
+<a class="transparent"><br>Next level:</a> ${checkLvl(position, target)}</a></p>`
     }
 }
 
