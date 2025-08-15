@@ -30,7 +30,7 @@ init().then(() => {
   <option value=".startswith">Starts with</option>
   <option value=".endswith">Ends with</option>
   <option value="!.between">Not between</option>
-  <option value="!.include">Not includes</option>
+  <option value="!.includes">Not includes</option>
   <option value="!.startswith">Not starts with</option>
   <option value="!.endswith">Not ends with</option>
   `
@@ -41,7 +41,7 @@ init().then(() => {
   <option value=".includes">Includes</option>
   <option value=".startswith">Starts with</option>
   <option value=".endswith">Ends with</option>
-  <option value="!.include">Not includes</option>
+  <option value="!.includes">Not includes</option>
   <option value="!.startswith">Not starts with</option>
   <option value="!.endswith">Not ends with</option>
   `
