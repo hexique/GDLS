@@ -979,12 +979,18 @@ const CHUNK_SIZE = 150;
 
 function displayResult(result) {
   const resultElement = document.getElementById("result");
-  resultOG = JSON.stringify(result)
-  
-  resultElement.innerHTML = `<button onclick="downloadResult(resultOG, 'result.json')">Download JSON</button>
+  try{
+    resultOG = JSON.stringify(result)
+    resultElement.innerHTML = `<button onclick="downloadResult(resultOG, 'result.json')">Download JSON</button>
 <button onclick="objToList(JSON.parse(resultOG))">Download GMDL</button>
 <p><a class="transparent">Used attributes: ${used_filters.length != 1 ? used_filters.slice(0, used_filters.length - 1).join(", ") : "-"}</a><br>
 Found ${result.length} results.<p><br>`;
+  } catch {
+    console.log(`Result is too big. (length is ${Object.keys(result).length})`)
+  }
+  
+  
+
   
   let currentRange = 150;
   let displayedResults = 0;
