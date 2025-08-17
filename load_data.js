@@ -1,4 +1,4 @@
-const PRELOAD = true
+const PRELOAD = false
 
 async function load_data() {
   let allData = [];
@@ -64,6 +64,7 @@ function search() {
     return;
   }
 }
+
 
 
 
