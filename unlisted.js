@@ -4,8 +4,6 @@ let requestTimeout = null;
 
 async function fetchAuthor(author, page){ // stolen code from my old project
     try{
-
-
         const response = await fetch(`https://gdbrowser.com/api/search/${author}?page=${page}&count=10&user`)
         if(!response.ok){
             throw new Error(`HTTP error ${response.status}`);
@@ -21,12 +19,42 @@ async function fetchAuthor(author, page){ // stolen code from my old project
     }
 }
 
+async function fetchGJLevel(id) {
+    const formData = new FormData();
+    formData.append('levelID', id);
+    formData.append('secret', 'Wmfd2893gb7');
+
+    try {
+        const response = await fetch('http://www.boomlings.com/database/downloadGJLevel22.php', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'User-Agent': ''
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+        
+        return await response.text();
+    } catch (error) {
+        console.error('Error fetching level:', error);
+        return null;
+    }
+}
+
+fetchGJLevel(90009001).then(text => console.log(text));
+
 function start(){
     document.getElementById("btn-container").innerHTML = '<button onclick="stop()">Stop</button>'
+    isSearchStopped = false;
     findLevel()
 }
 
 async function findLevel() {
+    if (isSearchStopped) return;
+    
     try {
         if(requestTimeout) clearTimeout(requestTimeout)
 //                                                      first level from 2.2 
@@ -41,7 +69,6 @@ async function findLevel() {
         }
         
         if(level.downloads < 25 && level.difficulty == 'Unrated' && level.accountID != "0") {
-            audit.unshift(`Level ${id} (${level.name}) is potentially unlisted.`);
             
             let isUnlisted = true;
             let page = 0;
@@ -70,14 +97,14 @@ async function findLevel() {
                 result.unshift(`<h3>${level.name} by ${level.author}</h3><p>ID: ${level.id}</p>`);
                 document.getElementById("result-container").innerHTML += result[0];
             } else {
-                audit.unshift(`<a>Level ${id} (${level.name}) is public.</a>`);
+                audit.unshift(`<a>Level ${id} (${level.name}) is potentially unlisted.</a>`);
             }
         } else {
             audit.unshift(`Level ${id} (${level.name}) can't be unlisted.`);
         }
         
         displayAudit(audit);
-        requestTimeout = setTimeout(findLevel, 1000);
+        requestTimeout = setTimeout(findLevel, 500);
     } catch(error) {
         console.error("Error in findLevel:", error);
         requestTimeout = setTimeout(findLevel, 3000);
@@ -96,14 +123,13 @@ function displayAudit(array) {
 
 }
 
+let isSearchStopped = false;
+
 function stop() {
     if (requestTimeout) {
         clearTimeout(requestTimeout);
         requestTimeout = null;
-        console.log("Search stopped");
-
-        document.getElementById("btn-container").innerHTML = '<button onclick="start()">Resume</button>';
-    } else {
-        console.log("No active search to stop");
     }
+    isSearchStopped = true;
+    document.getElementById("btn-container").innerHTML = '<button onclick="start()">Start</button>';
 }

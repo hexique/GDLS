@@ -1,4 +1,4 @@
-const PRELOAD = false
+const PRELOAD = true
 
 async function load_data() {
   let allData = [];
@@ -31,7 +31,7 @@ async function load_data() {
       console.error(`Error while loading ${i}.json:, ${error}`);
     }
 
-    progressDiv.innerHTML = `<h2>Loading... ${((i + 1) / totalFiles) * 100}%</h2><p> <a class="transparent">Note: Since the site is hosted on GitHub Pages, where the 
+    progressDiv.innerHTML = `<h2>Loading... ${Math.floor(((i + 1) / totalFiles) * 100)}%</h2><p> <a class="transparent">Note: Since the site is hosted on GitHub Pages, where the 
 file size limit is 50 MB, all data has to be stored in 25 separate files, which can cause the download to take up to </a>4 minutes<a class="transparent">. Please be patient<p>`;
   }
 
@@ -44,8 +44,11 @@ let data = [];
 
 
 async function init() {
-  data = await load_data();
-  console.log("data is loaded.");
+  if(!PRELOAD){
+    data = await load_data();
+    console.log("data is loaded.");
+  }
+
 }
 
 if(PRELOAD) {
