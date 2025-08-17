@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore for 1.9 million Geometry Dash levels"/>
+    <title>GDLS | Documentation</title>
+    <link rel="icon" type="image/x-icon" target="_blank" href="img/logo.png">
+    <link rel="stylesheet" target="_blank" href="style.css">
+    <link rel="stylesheet" target="_blank" href="table.css">
+
+</head>
+<body>
+
+    <div class="centered" style="margin-top: 50px;">
+    <img src="img/faq/9.png">
+    <h1 id="welcome-to-the-gdls-documentation">Welcome to the GDLS documentation</h1>
+    <p>Here you can find answers to frequently asked questions (FAQ). Some useful information that can helps you with working with this website. How does it working and more things.
+    This documentation is splitted by 3 parts:</p>
+    </div>
+    <div>
+    <ol>
+    <li><strong>Introduction</strong><a> - how does this project appeard, who is author, etc.</a></li>
+    <li><strong>Pages</strong><a> - explanation about some pages on this website.</a></li>
+    <li><strong>FAQ</strong><a> - answers to frequently asked questions.</a></li>
+    </ol>
+    <hr>
+    <h1 id="1-introduction">1. Introduction</h1>
+    <h2 id="what-is-gdls-">What is GDLS?</h2>
+    <p>GDLS (Geometry Dash Level Scan) - is a project by HeXi, that is a huge array with 1.9 million absolutely random Geometry Dash levels. Here you can search here levels by filters, that unavailable in vanilla Geometry Dash, some fun thigs with GDBrowser API and more.</p>
+    <p>Video explanation</p>
+    <!-- 444 x 250 -->
+    <iframe width="444" height="250" src="https://www.youtube.com/embed/tnsXeIuzJk4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <h2 id="how-does-it-work-">How does it work?</h2>
+    <p>First, the code generates a random number between 128 and ~118 million. Then it sends a query to <a target="_blank" href="https://gdbrowser.com/api/level/128">https://gdbrowser.com/api/level/[this_random_number]</a> and if a level with such an ID exists, the script adds all its data to the array. After that, the code repeats this operation. Thus the script worked from 04.27.2025 to 04.28.2025 (129k levels), then from 05.15.2025 to 06.16.2025 (total 34 days until the IP was blocked in GDBrowser). Level scanning speed of approximately 2 levels/second.</p>
+    <img src="img/faq/0.png">
+    <hr>
+    <h1 id="2-pages">2. Pages</h1>
+    <img src="img/faq/8.png">
+    <p>At this chapter will explain how to use the individual pages on the site and how they work. There are three rows of buttons on the home page. 
+    The first row uses the data that I scanned.
+    The second row simply uses GDBrowser&#39;s API.
+    The third line includes technical stuff like the source codes I used</p>
+    <h2 id="-level-search-"><img src="img/faq/chapters/0.png" height="120"></h2>
+    <p>Here you can search for levels in the stats by various criteria. You will have a lot of conditions in front of you that you can add. If the input field contains either an empty string or the word “Any” (works only for drop-down lists), the condition will not affect the result. To the left of the input field will be a dropdown list with an operator that you can change. Some of the operators may not be clear. Here is an explanation of all of them</p>
+    <p>
+    <table>
+    <thead>
+    <tr>
+    <th>Operator</th>
+    <th>Meaning</th>
+    <th>Example with numbers</th>
+    <th>Example with text</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>=</td>
+    <td>Equals</td>
+    <td>420 = 420</td>
+    <td>&quot;bye&quot; = &quot;bye&quot;</td>
+    </tr>
+    <tr>
+    <td>!=</td>
+    <td>Not equals</td>
+    <td>420 != 128</td>
+    <td>&quot;bye&quot; != &quot;hi&quot;</td>
+    </tr>
+    <tr>
+    <td>&gt;</td>
+    <td>More</td>
+    <td>420 &gt; 128</td>
+    <td>-</td>
+    </tr>
+    <tr>
+    <td>&lt;</td>
+    <td>Less</td>
+    <td>420 &lt; 500</td>
+    <td>-</td>
+    </tr>
+    <tr>
+    <td>&gt;=</td>
+    <td>More or equals</td>
+    <td>420 &gt;= 420</td>
+    <td>-</td>
+    </tr>
+    <tr>
+    <td>&lt;=</td>
+    <td>Less or equals</td>
+    <td>420 &lt;= 420</td>
+    <td>-</td>
+    </tr>
+    <tr>
+    <td>Between</td>
+    <td>In range of two numbers</td>
+    <td>420 between &quot;128 500&quot;</td>
+    <td>-</td>
+    </tr>
+    <tr>
+    <td>Includes</td>
+    <td>Includes a text</td>
+    <td>420 includes 42</td>
+    <td>&quot;bye&quot; includes &quot;by&quot;</td>
+    </tr>
+    <tr>
+    <td>Starts with</td>
+    <td>Text is starting with [__]</td>
+    <td>420 starts with 42</td>
+    <td>&quot;bye&quot; starts with &quot;b&quot;</td>
+    </tr>
+    <tr>
+    <td>Ends with</td>
+    <td>Text is ends with [__]</td>
+    <td>420 ends with 20</td>
+    <td>&quot;bye&quot; ends with &quot;e&quot;</td>
+    </tr>
+    <tr>
+    <td>Not between</td>
+    <td>Not in range of two numbers</td>
+    <td>420 not between &quot;500 650&quot;</td>
+    <td>-</td>
+    </tr>
+    <tr>
+    <td>Not includes</td>
+    <td>Not includes a text</td>
+    <td>420 not includes &quot;28&quot;</td>
+    <td>&quot;bye&quot; not includes &quot;hi&quot;</td>
+    </tr>
+    <tr>
+    <td>Not starts with</td>
+    <td>Text is not starting with [__]</td>
+    <td>420 not starts with &quot;20&quot;</td>
+    <td>&quot;bye&quot; not starts with &quot;e&quot;</td>
+    </tr>
+    <tr>
+    <td>Not ends with</td>
+    <td>Text is not ends with [__]</td>
+    <td>420 not ends with &quot;42&quot;</td>
+    <td>&quot;bye&quot; not ends with &quot;by&quot;</td>
+    </tr>
+    </tbody>
+    </table>
+    </p>
+    <p>As you can see not all operators are used in strings, but any pure can be represented as a string. Therefore, for example, “Name” does not have a Between operator.</p>
+    <h3 id="how-does-between-operator-works-">How does &quot;Between&quot; operator works?</h3>
+    <img src="img/faq/1.png" height="350">
+    <p>For example, if you want the level id to be between a and b, you enter “a b” in the input field. a is the minimum value, b is the maximum value. Here&#39;s some examples</p>
+    <p>x between 100 and 1000: &quot;100 1000&quot;<br>
+    x between 165 and 200: &quot;165 200&quot;</p><br>
+    <p>Inversion works with same way.</p><br>
+    <p>x is not between 100 and 1000: &quot;100 1000&quot;<br>
+    x is not between 165 and 200: &quot;165 200&quot;</p>
+    <h3 id="what-is-position-property-">What is position property?</h3>
+    <img src="img/faq/2.png" height="250">
+    <p>The position is an integer number from 0 to 1 951 419 (the length of the entire array of levels). All levels are sorted by ID and position is their sequence number. That is, the level with position 0 will be the oldest level in the data. And the level with position 1 951 419 will be the newest. You can see levels with positions on the “fun” page.</p>
+    <hr>
+    <h2 id="-level-statistics-"><strong><img src="img/faq/chapters/1.png" height="120"></strong></h2>
+    <p>Here you can independently collect statistics on certain parameters. In the top menu you can select a parameter to collect statistics on. At the bottom you can choose how to sort the result.<br>Value - sorting by the number of uses of a certain parameter value.<br>Alphabet - sorting by the alphabet of the parameter.<br>Length - sorting by the length of the key. If you click the Reverse checkbox, the result will be displayed in reverse order. After pressing the Start button you will be shown the table with the result. The Key column is the value of the parameter you selected.<br>“Value” - the number of levels matched by the “Key” cell on the left.<br>“Percentage” - the percentage of such levels from the total mass.</p>
+    <hr>
+    <h2 id="-fun-"><strong><img src="img/faq/chapters/2.png" height="120"></strong></h2>
+    <p>Some fun things that you can do with all levels.</p>
+    <h3 id="fetch-level-by-id">Fetch level by ID</h3>
+    <p>Type your level ID at the input. If this level is in the data you will see its data. Otherwise, the two closest levels to this id will be displayed</p>
+    <h2 id="fetch-levels">Fetch levels</h2>
+    <p>In this section you can see the levels in a certain interval of the ID. Enter the minimum and maximum ID or position in the input fields and all levels in this interval will be displayed in  <code>[ID]: [Name] by [Author] ([Position] Difference [Difference])</code> format.</p>
+    <hr>
+    <h2 id="what-is-difference-">What is difference?</h2>
+    <img src="img/faq/3.png">
+    <p>You can meet this parameter on this page. It is called differently in different places. In the ID search it is shown in the nearest levels and means the difference in the ID of the requested level and the nearest level, roughly speaking<br><code>[Input level ID] - [Closest level ID]</code>. And in search the difference is considered to be <code>[Level ID] - [Previous level ID]</code>.</p>
+    <h2 id="-level-info-"><strong><img src="img/faq/chapters/3.png" height="120"></strong></h2>
+    <p>In this section, you write the level&#39;s id and you are displayed all its information (if the level exists), which is returned by GDBrowser</p>
+    <h2 id="-unlisted-level-finder-"><strong><img src="img/faq/chapters/4.png" height="120"></strong></h2>
+    <p>When you press the “Start” button, the search for unlisted levels begins. The result will appear at the top, the audit will appear at the bottom, which shows what the script is doing. The length of unlisted levels or the number of attempts is given in brackets.</p>
+    <h3 id="how-does-it-work-">How does it work?</h3>
+    <p>First, the code generates a random number between ~9.7 million (first level 2.2&#39;s first level ID when unlisted access was added to more than just friends) and the last level&#39;s ID. If the level exists, then if it has more than 25 downloads and has a difficulty face, it&#39;s definitely not unlisted. Further, because Geometry Dash does not store in the level data its access, the code scans all levels on the author&#39;s account, and if there is no generated level there, then it is unlisted, after which all these actions are repeated again.</p>
+    <img src="img/faq/4.png" height="500">
+    <h2 id="why-is-the-found-level-not-displayed-in-geometry-dash-">Why is the found level not displayed in Geometry Dash?</h2>
+    <img src="img/faq/5.png" height="400">
+    <p>Most likely because the author set unlisted level access to friends only.</p>
+    <p>Some tips to help you watch the level:</p>
+    <ul>
+    <li><p>Try searching for the level by id in GDBrowser. If the level is indeed only available to friends, it should show up in GDBrowser as it sends requests directly to Robtop&#39;s servers, which are not immune to this and allow you to view any unlisted levels.</p>
+    </li>
+    <li><p>If you are interested in the content of the level itself (GDBrowser does not give access to the content of the level), you can send a friend request to the author of the level and maybe he will accept and you will have full access to the level.</p>
+    </li>
+    <li><p>Otherwise you can try to save the level on GDHistory (enter the level id in the input field on the main page). After you wait enough time you may be able to get the gmd file when searching for the level by its id. But note that this method requires a lot of time to wait for GDHistory to process your request.</p>
+    </li>
+    </ul>
+    <h3 id="how-often-unlisted-levels-can-occur-">How often unlisted levels can occur?</h3>
+    <img src="img/faq/6.png" height="400">
+    <p>It&#39;s always different, it just depends on your luck, because in this code everything is based on random, but among 500 scanned levels (including non-existing ones) 32 unlisted levels were found, which means that for each generated number there is ~6.4% chance that the level exists and is unlisted. Which in turn is somewhere around 1 in 15 of the generated IDs. And if we translate it into time, then an unlisted level will occur every 7 seconds, if we consider that one request takes 0.5 seconds.</p>
+    <h3 id="why-aren-t-any-levels-found-when-searching-">Why aren&#39;t any levels found when searching?</h3>
+    <img src="img/faq/7.png" height="450">
+    <p>If you see a lot of red lines in the audit saying “Level [_] is not found”, this could mean that your computer cannot connect to the server. In most cases, the answer to this question comes out from going to <a target="_blank" href="https://gdbrowser.com/">https://gdbrowser.com/</a>. If you see a Wraith with a lock on a dark purple background, it means that your IP has been blocked by GDBrowser, and this happened because you used the features on the site related to it too often. You can get around this by using a VPN or switching to a device with a different IP address. If the server returns an HTTP error, you can see the reason for this in the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes" target="_blank">Wikipedia article</a>.</p>
+    <h2 id="-download-scripts-"><strong><img src="img/faq/chapters/5.png" height="120"></strong></h2>
+    <p>On this page you can download all the source code I used and the source array with all the data and arrays with the statistics I gave in the video. This section will be of interest only to nerds who understand programming and JSON.</p>
+    <h2 id="-documentation-"><strong><img src="img/faq/chapters/6.png" height="120"></strong></h2>
+    <p>This is the page you are on right now, no explanation needed.</p>
+    <hr>
+    <h1 id="3-faq">3. FAQ</h1>
+    <p>This chapter will answer some questions you may have after browsing this site or reading the documentation.</p>
+    <h2 id="q-who-are-you-">Q: Who are you?</h2>
+    <p>I am HeXi. A 14 year old shitty programmer/youtuber/creator from Russia. You may know me from such levels as LIMBO in 1.0, or if you watch Russian youtube, from such videos as “How to build a the hardest level”, “How I made a 3D level in a 2D game (translation)” or video just about this project.</p>
+    <h2 id="q-will-you-be-expanding-the-level-database-">Q: Will you be expanding the level database?</h2>
+    <p>Unfortunately my IP was blocked on GDBrowser as written in the documentation before, so further expansion by me is not possible. For the same reason I can&#39;t currently compile statistics on accounts or comments, for example, because I can&#39;t view them through GDBrowser. Only if directly to the RobTop&#39;s servers.</p>
+    <h2 id="q-will-the-site-be-updated-in-the-future-">Q: Will the site be updated in the future?</h2>
+    <p>Probably yes.</p>
+    <h2 id="q-will-there-be-russian-localization-of-the-site-">Q: Will there be Russian localization of the site?</h2>
+    <p>Some words are difficult to translate into Russian, such as “Stars requested”. So I decided to make the site in English.</p>
+    <hr>
+    <p>My contacts:</p>
+    <p>Discord, Telegram, Donation Alerts, GD - <code>hexihexi</code><br>
+    YouTube, Telegram channel - <code>hexigd</code><br>
+    GitHub - <code>hexique</code></p><br>
+    <hr>
+    <p><i>Redaction 07.22.2025<br><br>~ GDLS</i><p>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <strong>Other pages</strong><br>
+            <p><a href="index.html">Main page</a> · <a href="download.html">Download scripts</a> · <a href="unlisted.html">Unlisted level finder</a> · <a href="random.html">???</a> · <a href="search.html">Level search</a> ·</p>
+        </div>
+    </footer>
+
+</body>
+</html>
