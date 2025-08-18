@@ -1,2 +1,2 @@
 # Link: https://hexique.github.io/GDLS/
-Documentation: https://hexique.github.io/GDLS/Documentation
+Documentation: https://hexique.github.io/GDLS/documentation.html
