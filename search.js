@@ -25,6 +25,8 @@ init().then(() => {
   <option value="&lt;">&lt;</option>
   <option value=">=">>=</option>
   <option value="&lt;=">&lt;=</option>
+  <option value=".multiple">⫶</option>
+  <option value="!.multiple">!⫶</option>
   <option value=".between">Between</option>
   <option value=".includes">Includes</option>
   <option value=".startswith">Starts with</option>
@@ -33,6 +35,7 @@ init().then(() => {
   <option value="!.includes">Not includes</option>
   <option value="!.startswith">Not starts with</option>
   <option value="!.endswith">Not ends with</option>
+
   `
       case 'str-select':
         return element.innerHTML = `
@@ -89,6 +92,10 @@ function filterLevel(type, operator, value, current_key, ) {
       return parseInt(current_key) < parseInt(value);
     case '<=':
       return parseInt(current_key) <= parseInt(value);
+    case '.multiple':
+      return parseInt(current_key) % parseInt(value) == 0;
+    case '!.multiple':
+      return !parseInt(current_key) % parseInt(value) == 0;
     case '.between':
       return between(current_key, value);
     case '.includes':
@@ -199,6 +206,10 @@ const filter = {
         return current_key <= parseInt(value);
       case '.between':
         return between(current_key, value);
+      case '.multiple':
+        return parseInt(current_key) % parseInt(value) == 0;
+      case '!.multiple':
+        return !parseInt(current_key) % parseInt(value) == 0;
 
       default:
         return true;
@@ -224,6 +235,10 @@ const filter = {
         return current_key < parseInt(value);
       case '<=':
         return current_key <= parseInt(value);
+      case '.multiple':
+        return parseInt(current_key) % parseInt(value) == 0;
+      case '!.multiple':
+        return !parseInt(current_key) % parseInt(value) == 0;
 
       default:
         return true;
@@ -324,7 +339,7 @@ const filter = {
         return current_key < value;
       case '<=':
         return current_key <= value;
-  
+
       default:
         return true;
     }
@@ -349,7 +364,10 @@ const filter = {
         return current_key <= parseInt(value);
       case '.between':
         return between(current_key, value);
-  
+      case '.multiple':
+        return parseInt(current_key) % parseInt(value) == 0;
+      case '!.multiple':
+        return !parseInt(current_key) % parseInt(value) == 0;
       default:
         return true;
     }
@@ -378,6 +396,10 @@ const filter = {
         return between(current_key, value);
       case '.includes':
         return current_key.toString().includes(value);
+      case '.multiple':
+        return parseInt(current_key) % parseInt(value) == 0;
+      case '!.multiple':
+        return !parseInt(current_key) % parseInt(value) == 0;
       case '.startswith':
         return current_key.toString().startsWith(value);
       case '.endswith':
@@ -412,6 +434,10 @@ const filter = {
         return current_key < parseInt(value);
       case '<=':
         return current_key <= parseInt(value);
+      case '.multiple':
+        return parseInt(current_key) % parseInt(value) == 0;
+      case '!.multiple':
+        return !parseInt(current_key) % parseInt(value) == 0;
       case '.between':
         return between(current_key, value);
       case '.includes':
@@ -450,6 +476,10 @@ const filter = {
         return current_key < parseInt(value);
       case '<=':
         return current_key <= parseInt(value);
+      case '.multiple':
+        return parseInt(current_key) % parseInt(value) == 0;
+      case '!.multiple':
+        return !parseInt(current_key) % parseInt(value) == 0;
       case '.between':
         return between(current_key, value);
       case '.includes':
@@ -490,6 +520,10 @@ const filter = {
         return parseInt(current_key) <= parseInt(value);
       case '.between':
         return between(current_key, value);
+      case '.multiple':
+        return parseInt(current_key) % parseInt(value) == 0;
+      case '!.multiple':
+        return !parseInt(current_key) % parseInt(value) == 0;
       case '.includes':
         return current_key.toString().includes(value);
       case '.startswith':
@@ -527,6 +561,10 @@ const filter = {
         return current_key.toString().endsWith(value);
       case '!.includes':
         return !current_key.toString().includes(value);
+      case '.multiple':
+        return parseInt(current_key) % parseInt(value) == 0;
+      case '!.multiple':
+        return !parseInt(current_key) % parseInt(value) == 0;
       case '!.startswith':
         return !current_key.toString().startsWith(value);
       case '!.endswith':
@@ -583,6 +621,10 @@ const filter = {
         return current_key == parseInt(value);
       case '!=':
         return current_key != parseInt(value);
+      case '.multiple':
+        return parseInt(current_key) % parseInt(value) == 0;
+      case '!.multiple':
+        return !parseInt(current_key) % parseInt(value) == 0;
       case '>':
         return current_key > parseInt(value);
       case '>=':
@@ -621,6 +663,10 @@ const filter = {
         return current_key == parseInt(value);
       case '!=':
         return current_key != parseInt(value);
+      case '.multiple':
+        return parseInt(current_key) % parseInt(value) == 0;
+      case '!.multiple':
+        return !parseInt(current_key) % parseInt(value) == 0;
       case '>':
         return current_key > parseInt(value);
       case '>=':
@@ -659,6 +705,10 @@ const filter = {
     switch(operator) {
       case '=':
         return current_key == parseInt(value);
+      case '.multiple':
+        return parseInt(current_key) % parseInt(value) == 0;
+      case '!.multiple':
+        return !parseInt(current_key) % parseInt(value) == 0;
       case '!=':
         return current_key != parseInt(value);
       case '>':
