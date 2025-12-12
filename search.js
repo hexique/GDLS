@@ -320,6 +320,28 @@ const filter = {
       default:
         return true;
     }
+  }, "version": (level) => {
+    const operator = document.getElementById("version-cond").value;
+    const value = document.getElementById("version").value
+    const current_key = level.version
+
+    switch(operator) {
+      case '=':
+        return current_key == parseInt(value);
+      case '!=':
+        return current_key != parseInt(value);
+      case '>':
+        return current_key > parseInt(value);
+      case '>=':
+        return current_key >= parseInt(value);
+      case '<':
+        return current_key < parseInt(value);
+      case '<=':
+        return current_key <= parseInt(value);
+  
+      default:
+        return true;
+    }
   },
   "uploadgameversion": (level) => {
     const operator = document.getElementById("uploadgameversion-cond").value;
@@ -970,7 +992,7 @@ function search(){
       pass = pass && filter.lvlposition(level);
       used_filters.push("Index")
     } if(document.getElementById("version").value != "") {
-      pass = pass && filter.starsrequested(level);
+      pass = pass && filter.version(level);
       used_filters.push("Version")
     } if(document.getElementById("starsrequested").value != "") {
       pass = pass && filter.starsrequested(level);
